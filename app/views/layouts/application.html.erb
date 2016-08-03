@@ -12,14 +12,12 @@
   <body>
     <%= render "shared/navbar" %>
 
-    <!--  Managing the display of the alert when logging failed -->
-    <%= render "shared/alert" %>
+    <!--  Managing the display of flashes when logging -->
+    <%= render "shared/flashes" %>
 
     <%= yield %>
 
-
     <%= javascript_include_tag 'application' %>
-
 
   </body>
 </html>
