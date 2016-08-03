@@ -11,7 +11,15 @@
   </head>
   <body>
     <%= render "shared/navbar" %>
+
+    <!--  Managing the display of the alert when logging failed -->
+    <%= render "shared/alert" %>
+
     <%= yield %>
+
+
     <%= javascript_include_tag 'application' %>
+
+
   </body>
 </html>
