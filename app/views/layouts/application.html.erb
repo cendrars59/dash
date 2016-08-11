@@ -10,13 +10,12 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
+
     <%= render "shared/navbar" %>
 
     <!--  Managing the display of flashes when logging -->
     <%= render "shared/flashes" %>
-
     <%= yield %>
-
     <%= javascript_include_tag 'application' %>
 
   </body>

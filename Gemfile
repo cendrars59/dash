@@ -13,9 +13,14 @@ gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
 gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem 'font-awesome-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'autoprefixer-rails'
+gem 'sprockets', '3.7.0'
+# to manag the seach form in index pages
+gem 'ransack', '~> 1.8', '>= 1.8.2'
+gem 'will_paginate', github: 'jonatack/will_paginate'
 
 group :development, :test do
   gem 'binding_of_caller'

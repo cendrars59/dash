@@ -10,10 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803134820) do
+ActiveRecord::Schema.define(version: 20160805091053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "log_added_values", force: :cascade do |t|
+    t.string   "code"
+    t.string   "label"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "log_stages", force: :cascade do |t|
+    t.string   "code"
+    t.string   "label"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "log_statuses", force: :cascade do |t|
+    t.string   "code"
+    t.string   "label"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "log_types", force: :cascade do |t|
+    t.string   "code"
+    t.string   "label"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string   "code"
+    t.string   "label"
+    t.text     "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "log_stage_id"
+    t.integer  "log_status_id"
+    t.integer  "log_type_id"
+    t.integer  "log_added_value_id"
+    t.index ["log_added_value_id"], name: "index_logs_on_log_added_value_id", using: :btree
+    t.index ["log_stage_id"], name: "index_logs_on_log_stage_id", using: :btree
+    t.index ["log_status_id"], name: "index_logs_on_log_status_id", using: :btree
+    t.index ["log_type_id"], name: "index_logs_on_log_type_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,4 +84,8 @@ ActiveRecord::Schema.define(version: 20160803134820) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "logs", "log_added_values"
+  add_foreign_key "logs", "log_stages"
+  add_foreign_key "logs", "log_statuses"
+  add_foreign_key "logs", "log_types"
 end
