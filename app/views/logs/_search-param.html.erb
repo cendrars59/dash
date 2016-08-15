@@ -31,10 +31,10 @@
       <%= f.text_field :code_or_description_cont %>
    </div>
    <div class="form-group spacing-search">
-      <%= f.label :log_type_label_cont, "Entry" %>
+      <%= f.label "Type" %>
    </div>
    <div class="form-group spacing-search">
-      <%= f.text_field :log_type_label_cont %>
+      <%= f.select options_for_select(@selectable_types) %>
    </div>
    <div class="form-group spacing-search">
 
