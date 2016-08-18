@@ -1,0 +1,17 @@
+<%= simple_form_for @log do |l| %>
+
+
+    <%= l.input :code, label:"Code",input_html: {maxlength: 6 }%>
+    <%= l.input :label, label:"Title", input_html: { maxlength: 40 } %>
+    <%= l.association :log_type, label:'Type',collection: @selectable_types,:readonly => true, :label_method => lambda { |log_type| "#{log_type.code} - #{log_type.label}" },include_blank: false,input_html: {  } %>
+    <%= l.association :log_status, label:'Status',collection: @selectable_status,:readonly => true, :label_method => lambda { |log_status| "#{log_status.code} - #{log_status.label}" },include_blank: false,input_html: {  } %>
+    <%= l.association :log_added_value, label:'Added Value',collection: @selectable_values,:readonly => true, :label_method => lambda { |log_added_value| "#{log_added_value.code} - #{log_added_value.label}" },include_blank: false,input_html: {  } %>
+
+  <div class="buttons-down-form">
+    <%= l.button :submit, "Validate", class: "btn validate" %>
+    <button class="btn">
+      <%= link_to "Back", logs_path, class: " navbar-wagon-item navbar-wagon-link" %>
+    </button>
+  </div>
+
+<% end %>

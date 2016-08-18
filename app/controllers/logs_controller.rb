@@ -1,9 +1,9 @@
 class LogsController < ApplicationController
 
-  before_action :find_log_status, only: [:index,:create,:show,:edit, :update]
-  before_action :find_log_added_value, only: [:index,:create,:show,:edit, :update]
-  before_action :find_log_stage, only: [:index,:create,:show,:edit, :update]
-  before_action :find_log_type, only: [:index,:create,:show,:edit, :update]
+  before_action :find_log_status, only: [:index,:new,:create,:show,:edit, :update]
+  before_action :find_log_added_value, only: [:index,:new,:create,:show,:edit, :update]
+  before_action :find_log_stage, only: [:index,:new,:create,:show,:edit, :update]
+  before_action :find_log_type, only: [:index,:new,:create,:show,:edit, :update]
 
   def index
     @search = Log.search(params[:q])
@@ -14,7 +14,7 @@ class LogsController < ApplicationController
   end
 
   def new
-    @Log = Log.new
+    @log = Log.new
   end
 
   def create

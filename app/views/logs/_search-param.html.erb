@@ -1,27 +1,3 @@
-<!-- <div class="form-group" class="spacing-search">
-  <%=label_tag 'search', 'Text', class: 'search_label'  %>
-  <%= text_field_tag :search, params[:search] %>
-</div>
-<div class="form-group" class="spacing-search">
-  <%=label_tag 'search', 'Type', class: 'search_label'  %>
-</div>
-<div class="form-group" class="spacing-search">
-  <%=label_tag 'search', 'Status', class: 'search_label'  %>
-</div>
-<div class="form-group" class="spacing-search">
-  <%=label_tag 'search', 'Added value', class: 'search_label'  %>
-</div>
-<div class="form-group" class="spacing-search">
-  <%=label_tag 'search', 'Stage', class: 'search_label'  %>
-</div>
-<div class="form-group" class="spacing-search">
-  <%=label_tag 'search', 'Date of creation', class: 'search_label'  %>
-</div>
-<div class="form-group" class="spacing-search">
-  <%= submit_tag "Search", class:"btn spacing-search"  %>
-</div>
- -->
-
  <%= search_form_for @search do |f| %>
 
    <div class="form-group spacing-search">
@@ -34,10 +10,25 @@
       <%= f.label "Type" %>
    </div>
    <div class="form-group spacing-search">
-      <%= f.select options_for_select(@selectable_types) %>
+      <%= f.select :log_type_id,options_from_collection_for_select(@selectable_types,"code","label"),include_blank: true %>
    </div>
    <div class="form-group spacing-search">
-
+      <%= f.label "Status" %>
+   </div>
+   <div class="form-group spacing-search">
+      <%= f.select :log_status_id,options_from_collection_for_select(@selectable_status,"code","label"),include_blank: true %>
+   </div>
+   <div class="form-group spacing-search">
+      <%= f.label "Added value" %>
+   </div>
+   <div class="form-group spacing-search">
+      <%= f.select :log_added_value_id,options_from_collection_for_select(@selectable_values,"code","label"), include_blank: true %>
+   </div>
+   <div class="form-group spacing-search">
+      <%= f.label "Stage" %>
+   </div>
+   <div class="form-group spacing-search">
+      <%= f.select :log_stage_id,options_from_collection_for_select(@selectable_stages,"code","label"), include_blank: true %>
    </div>
    <div class="form-group spacing-search">
        <%= f.submit "Search" %>
