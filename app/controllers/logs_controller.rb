@@ -1,13 +1,14 @@
 class LogsController < ApplicationController
 
-  before_action :find_log_status, only: [:index,:new,:create,:show,:edit, :update]
-  before_action :find_log_added_value, only: [:index,:new,:create,:show,:edit, :update]
-  before_action :find_log_stage, only: [:index,:new,:create,:show,:edit, :update]
-  before_action :find_log_type, only: [:index,:new,:create,:show,:edit, :update]
+  before_action :find_log_status, only: [:index,:new,:create,:show,:edit,:update]
+  before_action :find_log_added_value, only: [:index,:new,:create,:show,:edit,:update]
+  before_action :find_log_stage, only: [:index,:new,:create,:show,:edit,:update]
+  before_action :find_log_type, only: [:index,:new,:create,:show,:edit,:update]
+  before_action :find_milestone, only: [:index,:new,:create,:show,:edit,:update]
 
   def index
     @search = Log.search(params[:q])
-    @logs = @search.result.includes(:log_stage,:log_status,:log_type, :log_added_value)
+    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone)
   end
 
   def show
@@ -38,6 +39,7 @@ class LogsController < ApplicationController
   end
 
   def destroy
+    @log = Log.find(params[:id])
     @log.destroy
     redirect_to logs_path
   end
@@ -46,7 +48,7 @@ class LogsController < ApplicationController
 
   # Avoid paramters hacking
   def log_params
-    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id)
+    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id)
   end
 
   #gathering objects related to log object
@@ -65,6 +67,10 @@ class LogsController < ApplicationController
 
   def find_log_type
     @selectable_types = LogType.active
+  end
+
+  def find_milestone
+    @selectable_milestones = Milestone.active
   end
 
 end

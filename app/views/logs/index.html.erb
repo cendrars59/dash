@@ -1,10 +1,16 @@
 <div class="work-area">
-  <h2>Logs</h2>
-  <%= render "logs-search" %>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-        <%= render "logs-list" %>
+  <div class="work-area-top work-area-components">
+    <div class="work-area-top-title work-area-top-components">
+      <h2>Logs</h2>
     </div>
+    <div class="work-area-top-features work-area-top-components ">
+      <%= link_to new_log_path, class: 'work-area-top-features-feature' do %>
+        <button type="button" name="New" class="btn action">New</button>
+      <% end %>
+    </div>
+  </div>
+  <div class="work-area-components">
+    <%= render "logs-search" %>
+    <%= render "logs-list" %>
   </div>
 </div>
