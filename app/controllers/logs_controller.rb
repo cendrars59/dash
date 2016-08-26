@@ -1,5 +1,7 @@
 class LogsController < ApplicationController
 
+
+  before_action :find_log, only: [:show,:edit,:update, :destroy]
   before_action :find_log_status, only: [:index,:new,:create,:show,:edit,:update]
   before_action :find_log_added_value, only: [:index,:new,:create,:show,:edit,:update]
   before_action :find_log_stage, only: [:index,:new,:create,:show,:edit,:update]
@@ -39,7 +41,6 @@ class LogsController < ApplicationController
   end
 
   def destroy
-    @log = Log.find(params[:id])
     @log.destroy
     redirect_to logs_path
   end
@@ -49,6 +50,10 @@ class LogsController < ApplicationController
   # Avoid paramters hacking
   def log_params
     params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id)
+  end
+
+  def find_log
+    @log = Log.find(params[:id])
   end
 
   #gathering objects related to log object

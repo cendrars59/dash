@@ -1,9 +1,0 @@
-<h3>Caracteristics</h3>
-
-<%= l.input :code, label:"Code",input_html: {maxlength: 6 }%>
-<%= l.input :label, label:"Title", input_html: { maxlength: 40 } %>
-<%= l.association :log_type, label:'Type',collection: @selectable_types,:readonly => true, :label_method => lambda { |log_type| "#{log_type.code} - #{log_type.label}" },include_blank: false,input_html: {  } %>
-<%= l.association :log_status, label:'Status',collection: @selectable_status,:readonly => true, :label_method => lambda { |log_status| "#{log_status.code} - #{log_status.label}" },include_blank: false,input_html: {  } %>
-<%= l.association :log_added_value, label:'Added Value',collection: @selectable_values,:readonly => true, :label_method => lambda { |log_added_value| "#{log_added_value.code} - #{log_added_value.label}" },include_blank: false,input_html: {  } %>
-<%= l.association :log_stage, label:'Insertion stage',collection: @selectable_stages,:readonly => true, :label_method => lambda { |log_stage| "#{log_stage.code} - #{log_stage.label}" },include_blank: false,input_html: {  } %>
-<%= l.association :milestone, label:'Delivery stage',collection: @selectable_milestones,:readonly => true, :label_method => lambda { |milestone| "#{milestone.code} - #{milestone.label}" },include_blank: false,input_html: {  } %>

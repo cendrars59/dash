@@ -22,6 +22,10 @@ gem 'sprockets', '3.7.0'
 gem 'ransack', '~> 1.8', '>= 1.8.2'
 gem 'will_paginate', github: 'jonatack/will_paginate'
 
+# the following gems are used in order to manage diffrent kinds of entry at the view level
+gem 'github-markdown', '~> 0.6.9'
+gem 'gemoji', '~> 2.1'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'

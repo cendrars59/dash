@@ -17,7 +17,7 @@ class Log < ApplicationRecord
 
 ########### When creating or updating log
 
-  before_create :set_code
+  #before_create :set_code
 
 
   private

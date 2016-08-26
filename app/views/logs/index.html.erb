@@ -1,16 +1,19 @@
 <div class="work-area">
-  <div class="work-area-top work-area-components">
-    <div class="work-area-top-title work-area-top-components">
-      <h2>Logs</h2>
-    </div>
-    <div class="work-area-top-features work-area-top-components ">
-      <%= link_to new_log_path, class: 'work-area-top-features-feature' do %>
-        <button type="button" name="New" class="btn action">New</button>
-      <% end %>
-    </div>
-  </div>
+  <h2>Logs</h2>
   <div class="work-area-components">
-    <%= render "logs-search" %>
-    <%= render "logs-list" %>
+
+    <!-- Top of the work area for the logs index page -->
+    <!-- Top of are there are 2 components Title + Search area-->
+    <div class="work-area-top">
+      <%= render "logs-search" %>
+    </div>
+
+
+    <!-- Middle of the work area for the logs index page -->
+    <!-- Displaying the list of logs-->
+    <div class="work-area-components marging-top">
+      <%= render "logs-list" %>
+    </div>
+
   </div>
 </div>
