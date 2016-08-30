@@ -12,6 +12,7 @@ class Milestone < ApplicationRecord
 
   # Scope on the active item
   scope :active, -> {
-    where(:active => true)
+    where(active: true)
   }
+
 end

@@ -12,7 +12,13 @@ class LogStatus < ApplicationRecord
 
   # Scope on the active item
   scope :active, -> {
-    where(:active => true)
+    where(active: true)
+  }
+
+  # BR-LOGSTATUS-001 : Scope on open status when creating a new log.
+  # It is the only status available.
+  scope :open, -> {
+    where(code: "OPE")
   }
 
 end
