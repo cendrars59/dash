@@ -59,16 +59,17 @@ class LogsController < ApplicationController
 
   # Avoid paramters hacking
   def log_params
-    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id)
+    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id,:expectation)
   end
+
 
 
   def find_log
     @log = Log.find(params[:id])
   end
 
-
-  #gathering objects related to log object
+  # Following methods are used to
+  # gather objects related to log object
 
   def find_log_status
     @selectable_status = LogStatus.active

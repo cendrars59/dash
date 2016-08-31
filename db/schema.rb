@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829194828) do
+ActiveRecord::Schema.define(version: 20160831201802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160829194828) do
     t.integer  "log_type_id"
     t.integer  "log_added_value_id"
     t.integer  "milestone_id"
-    t.binary   "expectation"
+    t.text     "expectation"
     t.index ["log_added_value_id"], name: "index_logs_on_log_added_value_id", using: :btree
     t.index ["log_stage_id"], name: "index_logs_on_log_stage_id", using: :btree
     t.index ["log_status_id"], name: "index_logs_on_log_status_id", using: :btree
