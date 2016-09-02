@@ -35,7 +35,7 @@ class Log < ApplicationRecord
   # the random number has to be in format NNNN (4 digits)
   # IE : CR0001
 
-  #before_create :set_code
+  before_validation :set_code, if: :log_type?
 
 
 
@@ -81,22 +81,25 @@ class Log < ApplicationRecord
 
 
 
-
-
-
-
-
-
-
-
-
-
 private
 
+  
   def set_code
-    self.code = self.log_type.code +(1..9999).to_a.shuffle.to_s.rjust(4,'0')
+    temp_code = generate_code 
+    until Log.find_by!(code: temp_code)
+      temp_code = generate_code
+    end
+    self.code = temp_code
   end
 
+  def generate_code 
+    code = ""
+    code = self.log_type.code + rand(9999).to_s.rjust(4,'0')
+  end 
+
+
+
+  end  
 
 
 end
