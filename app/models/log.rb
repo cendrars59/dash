@@ -41,6 +41,24 @@ class Log < ApplicationRecord
   before_validation :set_code #, if: :log_type?
 
 
+  # BR-LOGS-002 : Generating CSV file for log export
+
+  def self.to_csv
+
+    attributes = %w{code label description}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |log|
+        csv << attributes.map{ |attr| log.send(attr) }
+      end
+    end
+
+  end
+
+
+
 
 
 
@@ -88,7 +106,6 @@ private
 
 
   def set_code
-
     if self.code == nil or log_type.code[0..1] != self.code[0..1]
       temp_code = generate_code(self.log_type.code)
       while Log.exists?(code: temp_code)
@@ -96,8 +113,8 @@ private
       end
     self.code = temp_code
     end
-
   end
+
 
   def generate_code(log_type_code)
     code = ""
