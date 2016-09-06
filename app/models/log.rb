@@ -44,18 +44,17 @@ class Log < ApplicationRecord
   # BR-LOGS-002 : Generating CSV file for log export
 
   def self.to_csv
-
-    attributes = %w{code label description}
-
-    CSV.generate(headers: true) do |csv|
+    attributes = %w{code label description code_type label_type code_status label_status}
+    CSV.generate(headers:true) do |csv|
       csv << attributes
-
       all.each do |log|
-        csv << attributes.map{ |attr| log.send(attr) }
+        csv << [log.code, log.label,log.description,log.log_type.code, log.log_type.label,
+         log.log_status.code,log.log_status.label ]
       end
     end
-
   end
+
+
 
 
 

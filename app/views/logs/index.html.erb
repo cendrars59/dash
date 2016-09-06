@@ -4,16 +4,21 @@
 
     <!-- Top of the work area for the logs index page -->
     <!-- Top of are there are 2 components Title + Search area-->
-    <div class="work-area-top">
+    <div class="index-work-area-top">
       <%= render "logs-search" %>
     </div>
 
 
     <!-- Middle of the work area for the logs index page -->
     <!-- Displaying the list of logs-->
-    <div class="work-area-components marging-top">
+    <div class="work-area-components index-middle-component-area-height marging-top">
       <%= render "logs-list" %>
     </div>
+
+    <div class="work-area-components marging-top">
+      <%= render "logs-list-features" %>
+    </div>
+
 
   </div>
 </div>

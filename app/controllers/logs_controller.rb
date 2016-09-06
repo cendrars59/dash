@@ -12,12 +12,13 @@ class LogsController < ApplicationController
 
 
   def index
+
     @search = Log.search(params[:q])
     @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone)
 
     respond_to do |format|
       format.html
-      format.csv { send_data @logs.to_csv, filename: "Logs Selection-#{Date.today}.csv" }
+      format.csv {send_data @logs.to_csv, filename: "Logs Selection-#{Date.today}.csv"}
     end
 
   end

@@ -1,5 +1,8 @@
 require_relative 'boot'
 
+# In order to manage the CSV file into the application
+require 'csv'
+
 require "rails"
 # Pick the frameworks you want:
 require "active_model/railtie"
