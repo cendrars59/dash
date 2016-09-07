@@ -1,111 +1,109 @@
-
-<div class="work-area">
-  <h2>Log</h2>
-  <div class="work-area-components">
-
-    <!-- Middle of the work area for the log form page (Creation and Update)-->
-    <!-- Displaying the detail view of log-->
-    <div class="marging-top">
-
-      <%= simple_form_for @log do |l| %>
-
-        <div class="center-block">
-
-          <!-- Left panel of the middle area -->
-          <div class="left-small element-inline component-area-height padding-right" >
-
-            <h3>Caracteristics</h3>
-
-            <div>
-              <div class="element-inline element-margin-right">
-                <%= l.input :code, label:"Code",readonly: true ,input_html: {class: 'small-field', maxlength: 7 }%>
-              </div>
-              <div class="element-inline">
-                <%= l.input :label, label:"Title", input_html: {maxlength: 40 } %>
-              </div>
-            </div>
-
-            <div>
-              <div class="element-inline element-margin-right">
-                <%= l.association :log_type, label:'Type',collection: @selectable_types, readonly: true, include_blank: true, label_method: lambda { |log_type| "#{log_type.code} - #{log_type.label}" },input_html: {class: 'medium-field'} %>
-              </div>
-              <div class="element-inline">
-                <%= l.association :log_status, label:'Status', collection: @selectable_status, readonly: true, include_blank: true, label_method: lambda { |log_status| "#{log_status.code} - #{log_status.label}" },input_html: {class: 'medium-field'} %>
-              </div>
-            </div>
-
-            <div>
-              <div class="element-inline element-margin-right">
-                <%= l.association :log_stage, label:'Insertion stage', collection: @selectable_stages, readonly: true, include_blank: true, label_method: lambda { |log_stage| "#{log_stage.label}" }, input_html: {class: 'medium-field'} %>
-              </div>
-            </div>
-
-            <div>
-              <div class="element-inline element-margin-right">
-                <label for="log-doc">Date of creation</label>
-                <p class="form-control medium-field" id="log-doc" readonly> <%= @log.created_at %> </p>
-              </div>
-              <div class="element-inline">
-                <label for="log-dou">Date of update</label>
-                <p class="form-control medium-field" id="log-dou" readonly> <%= @log.updated_at %> </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="element-inline element-margin-right">
-                <label for="log-cby">Created by</label>
-                <p class="form-control medium-field" id="log-cby" readonly> </p>
-              </div>
-              <div class="element-inline">
-                <label for="log-uby">Updated by</label>
-                <p class="form-control medium-field" id="log-uby" readonly> </p>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Right panel of the middle area -->
-          <div class="right-large element-inline component-area-height padding-right">
-            <h3>Depencies</h3>
-            <div>
-              <div class="element-inline element-margin-right">
-                <%= l.association :log_added_value, label:'Expected added value',collection: @selectable_values,:readonly => true, :label_method => lambda { |log_added_value| "#{log_added_value.code} - #{log_added_value.label}" },include_blank: true,input_html: { class: 'large-field' } %>
-              </div>
-              <div class="element-inline">
-                <%= l.association :milestone, label:'Requested delivery stage',collection: @selectable_milestones,:readonly => true, :label_method => lambda { |milestone| "#{milestone.code} - #{milestone.label}" },include_blank: true,input_html: { class: 'medium-field' } %>
-              </div>
-            </div>
-            <div>
-              <div class="element-inline element-margin-right">
-                <%= l.input :description, label:"Current status", input_html: {class: 'input-for-resume' }%>
-              </div>
-            </div>
-            <div>
-              <div class="element-inline element-margin-right">
-                <%= l.input :expectation, label:"Expectation", input_html: {class: 'input-for-resume'}%>
-              </div>
-            </div>
-          </div>
-
-          <!-- Buttons area -->
-          <div class="work-area-components">
-            <div class="bottom-form">
-              <%= l.button :submit, "Validate", class: "btn btn-success" %>
-              <!--Fix the line below  -->
-              <button class="btn btn-default">
-                <%= link_to "Back", logs_path, class: " navbar-wagon-item navbar-wagon-link" %>
-              </button>
-            </div>
-
-          </div>
+<!-- Middle of the work area for the log form page (Creation and Update)-->
+<!-- Displaying the detail view of log-->
 
 
+<%= simple_form_for @log do |l| %>
+
+  <!-- Div managing the log entry -->
+  <div class="form-middle-component-area-height">
+    <!-- Left panel of the middle area -->
+    <div class="left-small element-inline component-area-height padding-right" >
+
+      <h3>Caracteristics</h3>
+
+      <div>
+        <div class="element-inline element-margin-right">
+          <%= l.input :code, label:"Code",readonly: true ,input_html: {class: 'small-field', maxlength: 7 }%>
         </div>
-      <% end %>
+        <div class="element-inline">
+          <%= l.input :label, label:"Title", input_html: {maxlength: 40 } %>
+        </div>
+      </div>
 
+      <div>
+        <div class="element-inline element-margin-right">
+          <%= l.association :log_type, label:'Type',collection: @selectable_types, readonly: true, include_blank: true, label_method: lambda { |log_type| "#{log_type.code} - #{log_type.label}" },input_html: {class: 'medium-field'} %>
+        </div>
+        <div class="element-inline">
+          <%= l.association :log_status, label:'Status', collection: @selectable_status, readonly: true, include_blank: true, label_method: lambda { |log_status| "#{log_status.code} - #{log_status.label}" },input_html: {class: 'medium-field'} %>
+        </div>
+      </div>
+
+      <div>
+        <div class="element-inline element-margin-right">
+          <%= l.association :log_stage, label:'Insertion stage', collection: @selectable_stages, readonly: true, include_blank: true, label_method: lambda { |log_stage| "#{log_stage.label}" }, input_html: {class: 'medium-field'} %>
+        </div>
+      </div>
+
+      <div>
+        <div class="element-inline element-margin-right">
+          <label for="log-doc">Date of creation</label>
+          <p class="form-control medium-field" id="log-doc" readonly> <%= @log.created_at %> </p>
+        </div>
+        <div class="element-inline">
+          <label for="log-dou">Date of update</label>
+          <p class="form-control medium-field" id="log-dou" readonly> <%= @log.updated_at %> </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="element-inline element-margin-right">
+          <label for="log-cby">Created by</label>
+          <p class="form-control medium-field" id="log-cby" readonly> </p>
+        </div>
+        <div class="element-inline">
+          <label for="log-uby">Updated by</label>
+          <p class="form-control medium-field" id="log-uby" readonly> </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel of the middle area -->
+    <div class="right-large element-inline component-area-height padding-right">
+      <h3>Depencies</h3>
+      <div>
+        <div class="element-inline element-margin-right">
+          <%= l.association :log_added_value, label:'Expected added value',collection: @selectable_values,:readonly => true, :label_method => lambda { |log_added_value| "#{log_added_value.code} - #{log_added_value.label}" },include_blank: true,input_html: { class: 'large-field' } %>
+        </div>
+        <div class="element-inline">
+          <%= l.association :milestone, label:'Requested delivery stage',collection: @selectable_milestones,:readonly => true, :label_method => lambda { |milestone| "#{milestone.code} - #{milestone.label}" },include_blank: true,input_html: { class: 'medium-field' } %>
+        </div>
+      </div>
+      <div>
+        <div class="element-inline element-margin-right">
+          <%= l.input :description, label:"Current status", input_html: {class: 'input-for-resume' }%>
+        </div>
+      </div>
+      <div>
+        <div class="element-inline element-margin-right">
+          <%= l.input :expectation, label:"Expectation", input_html: {class: 'input-for-resume'}%>
+        </div>
+      </div>
     </div>
   </div>
-</div> <!-- end work area -->
+
+
+
+  <!-- Buttons area -->
+  <div class="work-area-features-height work-area-features marging-top">
+    <div class="form-inline">
+      <div class="form-group spacing-search">
+        <%= l.button :submit, "Validate", class: "btn btn-success" %>
+      </div>
+      <div class="form-group spacing-search">
+        <!--Fix the line below  -->
+        <button class="btn btn-default">
+          <%= link_to "Back", logs_path, class: " navbar-wagon-item navbar-wagon-link" %>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+<% end %>
+
+
+
 
 
 

@@ -1,32 +1,63 @@
+body{
+  color: $darkblue;
+}
+
 .work-area{
   width: 98vw;
   padding-left: 2vw;
   padding-right: 1vw;
 }
 
-.work-area-components{
+.work-area-height{
+  height: 80vh;
+}
+
+.effective-work-area-width{
   width: 96vw;
 }
+
+.effective-work-area-height{
+  height: 75vh;
+}
+
+.effective-work-area-middle-height{
+  height: 65vh;
+}
+
+.form-middle-component-area-height{
+  height: 75vh;
+}
+
 
 .marging-top{
   margin-top: 1vh;
 }
 
-body{
-  color: $darkblue;
+.double-marging-top{
+ margin-top: 2vh;
 }
 
 .element-inline{
   display: inline-block;
 }
 
+.center-block{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 //////////////////////////////////////////////////////
 /// CSS style related to the top area of the index work area
 //////////////////////////////////////////////////////
 
-.index-work-area-top {
-  position: relative;
+.work-area-features-height {
   height: 8vh;
+}
+
+.work-area-features {
+  margin: 0 auto;
+  width: 30vw;
 }
 
 .work-area-top-components {
@@ -44,10 +75,6 @@ body{
 
 
 
-
-.index-middle-component-area-height{
-  height: 65vh;
-}
 
 .padding-right{
   padding-left: 1vw;
@@ -68,18 +95,8 @@ body{
 }
 
 
-.center-block{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
-
-.bottom-form {
-  margin: 0 auto;
-  width: 30vw;
-}
 
 
 

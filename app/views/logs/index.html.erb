@@ -1,24 +1,25 @@
-<div class="work-area">
+<div class="work-area work-area-height">
+
   <h2>Logs</h2>
-  <div class="work-area-components">
+
+  <div class="effective-work-area-width effective-work-area-height double-marging-top">
 
     <!-- Top of the work area for the logs index page -->
-    <!-- Top of are there are 2 components Title + Search area-->
-    <div class="index-work-area-top">
+    <!-- Top of are there is the search area-->
+    <div class="work-area-features-height">
       <%= render "logs-search" %>
     </div>
 
-
     <!-- Middle of the work area for the logs index page -->
     <!-- Displaying the list of logs-->
-    <div class="work-area-components index-middle-component-area-height marging-top">
+    <div class="effective-work-area-middle-height marging-top">
       <%= render "logs-list" %>
     </div>
 
-    <div class="work-area-components marging-top">
-      <%= render "logs-list-features" %>
-    </div>
-
-
   </div>
+
+  <div class="work-area-features-height work-area-features marging-top">
+    <%= render "logs-list-features" %>
+  </div>
+
 </div>
