@@ -7,7 +7,7 @@
   <!-- Div managing the log entry -->
   <div class="form-middle-component-area-height">
     <!-- Left panel of the middle area -->
-    <div class="left-small element-inline component-area-height padding-right" >
+    <div class="left-small element-inline component-area-height padding-right " >
 
       <h3>Caracteristics</h3>
 
@@ -49,7 +49,11 @@
       <div>
         <div class="element-inline element-margin-right">
           <label for="log-cby">Created by</label>
-          <p class="form-control medium-field" id="log-cby" readonly> </p>
+          <% if @log.user != nil %>
+            <p class="form-control medium-field" id="log-cby" readonly><%= @log.user.alias %></p>
+          <% else %>
+           <p class="form-control medium-field" id="log-cby" readonly> </p>
+          <% end %>
         </div>
         <div class="element-inline">
           <label for="log-uby">Updated by</label>
@@ -88,13 +92,12 @@
   <div class="work-area-features-height work-area-features marging-top">
     <div class="form-inline">
       <div class="form-group spacing-search">
-        <%= l.button :submit, "Validate", class: "btn btn-success" %>
+        <%= l.button :submit, "Validate", class: "btn btn-success button-features" %>
       </div>
       <div class="form-group spacing-search">
-        <!--Fix the line below  -->
-        <button class="btn btn-default">
-          <%= link_to "Back", logs_path, class: " navbar-wagon-item navbar-wagon-link" %>
-        </button>
+        <%= link_to logs_path do %>
+          <button type="button" name="Back" class="btn btn-primary button-features">Back</button>
+        <% end %>
       </div>
     </div>
   </div>

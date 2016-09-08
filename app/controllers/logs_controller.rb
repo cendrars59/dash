@@ -10,11 +10,10 @@ class LogsController < ApplicationController
   before_action :find_milestone, only: [:index,:new,:create,:show,:edit,:update]
 
 
-
   def index
 
     @search = Log.search(params[:q])
-    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone)
+    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone,:user)
 
     respond_to do |format|
       format.html
@@ -35,6 +34,7 @@ class LogsController < ApplicationController
 
   def create
     @log = Log.new(log_params)
+    @log.user = current_user
     if @log.save
       redirect_to logs_path
     else
@@ -56,17 +56,14 @@ class LogsController < ApplicationController
   end
 
 
-  def destroy
-    @log.destroy
-    redirect_to logs_path
-  end
+
 
 
   private
 
   # Avoid paramters hacking
   def log_params
-    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id,:expectation)
+    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id,:expectation,:user_id)
   end
 
 
@@ -105,6 +102,22 @@ class LogsController < ApplicationController
 
   def find_milestone
     @selectable_milestones = Milestone.active
+  end
+
+  def is_owner?
+    @log.user.id == current_user.id
+  end
+
+  # CTRL-LOGS-0xx: Only the user is allowed to delete an existing
+  # if the user wanting to delete the log is not the owner then trigger blocking error
+
+  def destroy
+    if is_owner?
+      @log.destroy
+      redirect_to logs_path
+    else
+      redirect_to logs_path, flash: { alert: "CTRL-LOGS-0xx: You are not the owner of the current log it can not be deleted by you" }
+    end
   end
 
 

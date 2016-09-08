@@ -20,7 +20,7 @@ class Log < ApplicationRecord
   belongs_to :log_added_value
   belongs_to :log_type
   belongs_to :milestone
-
+  belongs_to :user
 
 #############################################################################
 # Log business rules and validation
@@ -38,7 +38,7 @@ class Log < ApplicationRecord
   # IE : CR0001
 
 
-  before_validation :set_code #, if: :log_type?
+  before_validation :set_code
 
 
   # BR-LOGS-002 : Generating CSV file for log export

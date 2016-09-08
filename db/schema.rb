@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831201802) do
+ActiveRecord::Schema.define(version: 20160908130255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,11 +63,13 @@ ActiveRecord::Schema.define(version: 20160831201802) do
     t.integer  "log_added_value_id"
     t.integer  "milestone_id"
     t.text     "expectation"
+    t.integer  "user_id"
     t.index ["log_added_value_id"], name: "index_logs_on_log_added_value_id", using: :btree
     t.index ["log_stage_id"], name: "index_logs_on_log_stage_id", using: :btree
     t.index ["log_status_id"], name: "index_logs_on_log_status_id", using: :btree
     t.index ["log_type_id"], name: "index_logs_on_log_type_id", using: :btree
     t.index ["milestone_id"], name: "index_logs_on_milestone_id", using: :btree
+    t.index ["user_id"], name: "index_logs_on_user_id", using: :btree
   end
 
   create_table "milestones", force: :cascade do |t|
@@ -92,6 +94,7 @@ ActiveRecord::Schema.define(version: 20160831201802) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "alias"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -101,4 +104,5 @@ ActiveRecord::Schema.define(version: 20160831201802) do
   add_foreign_key "logs", "log_statuses"
   add_foreign_key "logs", "log_types"
   add_foreign_key "logs", "milestones"
+  add_foreign_key "logs", "users"
 end
