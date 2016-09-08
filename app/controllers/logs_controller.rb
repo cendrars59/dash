@@ -13,7 +13,7 @@ class LogsController < ApplicationController
   def index
 
     @search = Log.search(params[:q])
-    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone,:user)
+    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone,:creator, :owner)
 
     respond_to do |format|
       format.html
@@ -34,7 +34,7 @@ class LogsController < ApplicationController
 
   def create
     @log = Log.new(log_params)
-    @log.user = current_user
+    @log.creator = current_user
     if @log.save
       redirect_to logs_path
     else
@@ -48,6 +48,7 @@ class LogsController < ApplicationController
 
 
   def update
+    @log.owner = current_user
     if @log.update(log_params)
       redirect_to logs_path
     else
@@ -55,7 +56,17 @@ class LogsController < ApplicationController
     end
   end
 
+  # CTRL-LOGS-0xx: Only the user is allowed to delete an existing
+  # if the user wanting to delete the log is not the owner then trigger blocking error
 
+  def destroy
+    if is_owner?
+      @log.destroy
+      redirect_to logs_path
+    else
+      redirect_to logs_path, flash: { alert: "CTRL-LOGS-0xx: You are not the owner of the current log it can not be deleted by you" }
+    end
+  end
 
 
 
@@ -63,7 +74,7 @@ class LogsController < ApplicationController
 
   # Avoid paramters hacking
   def log_params
-    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id,:expectation,:user_id)
+    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id,:expectation,:creator_id,:owner_id)
   end
 
 
@@ -105,20 +116,10 @@ class LogsController < ApplicationController
   end
 
   def is_owner?
-    @log.user.id == current_user.id
+    @log.creator.id == current_user.id
   end
 
-  # CTRL-LOGS-0xx: Only the user is allowed to delete an existing
-  # if the user wanting to delete the log is not the owner then trigger blocking error
 
-  def destroy
-    if is_owner?
-      @log.destroy
-      redirect_to logs_path
-    else
-      redirect_to logs_path, flash: { alert: "CTRL-LOGS-0xx: You are not the owner of the current log it can not be deleted by you" }
-    end
-  end
 
 
 end

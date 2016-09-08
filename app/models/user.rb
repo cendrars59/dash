@@ -9,7 +9,7 @@ class User < ApplicationRecord
   #############################################################################
   # Data  model relationships
   #############################################################################
-    has_many :logs
-
+    has_many :created_logs, class_name: 'Log', foreign_key: 'creator_id'
+    has_many :owned_logs, class_name: 'Log', foreign_key: 'owner_id'
 
 end

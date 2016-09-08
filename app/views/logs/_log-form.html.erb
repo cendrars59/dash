@@ -49,15 +49,19 @@
       <div>
         <div class="element-inline element-margin-right">
           <label for="log-cby">Created by</label>
-          <% if @log.user != nil %>
-            <p class="form-control medium-field" id="log-cby" readonly><%= @log.user.alias %></p>
+          <% if @log.creator != nil %>
+            <p class="form-control medium-field" id="log-cby" readonly><%= @log.creator.alias %></p>
           <% else %>
            <p class="form-control medium-field" id="log-cby" readonly> </p>
           <% end %>
         </div>
         <div class="element-inline">
           <label for="log-uby">Updated by</label>
-          <p class="form-control medium-field" id="log-uby" readonly> </p>
+          <% if @log.owner != nil %>
+            <p class="form-control medium-field" id="log-uby" readonly><%= @log.owner.alias %> </p>
+          <% else %>
+            <p class="form-control medium-field" id="log-uby" readonly></p>
+          <% end %>
         </div>
       </div>
     </div>

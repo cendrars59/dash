@@ -20,7 +20,8 @@ class Log < ApplicationRecord
   belongs_to :log_added_value
   belongs_to :log_type
   belongs_to :milestone
-  belongs_to :user
+  belongs_to :creator, class_name: 'User'
+  belongs_to :owner, class_name: 'User'
 
 #############################################################################
 # Log business rules and validation
