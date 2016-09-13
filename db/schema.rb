@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908192611) do
+ActiveRecord::Schema.define(version: 20160913142417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,21 +55,21 @@ ActiveRecord::Schema.define(version: 20160908192611) do
     t.string   "code"
     t.string   "label"
     t.text     "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.integer  "log_stage_id"
     t.integer  "log_status_id"
     t.integer  "log_type_id"
     t.integer  "log_added_value_id"
-    t.integer  "milestone_id"
     t.text     "expectation"
     t.integer  "creator_id"
     t.integer  "owner_id"
+    t.integer  "expected_milestone_id"
+    t.integer  "confirmed_milestone_id"
     t.index ["log_added_value_id"], name: "index_logs_on_log_added_value_id", using: :btree
     t.index ["log_stage_id"], name: "index_logs_on_log_stage_id", using: :btree
     t.index ["log_status_id"], name: "index_logs_on_log_status_id", using: :btree
     t.index ["log_type_id"], name: "index_logs_on_log_type_id", using: :btree
-    t.index ["milestone_id"], name: "index_logs_on_milestone_id", using: :btree
   end
 
   create_table "milestones", force: :cascade do |t|
@@ -103,5 +103,4 @@ ActiveRecord::Schema.define(version: 20160908192611) do
   add_foreign_key "logs", "log_stages"
   add_foreign_key "logs", "log_statuses"
   add_foreign_key "logs", "log_types"
-  add_foreign_key "logs", "milestones"
 end
