@@ -25,10 +25,10 @@
       <%= f.select :log_stage_id_eq,options_from_collection_for_select(@selectable_stages,"id","label"), include_blank: true %>
    </div>
    <div class="form-group spacing-search">
-      <%= f.label "Milestone" %>
+      <%= f.label "Expetected Milestone" %>
    </div>
    <div class="form-group spacing-search">
-      <%= f.select :milestone_id_eq,options_from_collection_for_select(@selectable_milestones,"id","label"), include_blank: true %>
+      <%= f.select :expected_milestone_id_eq,options_from_collection_for_select(@selectable_milestones,"id","label"), include_blank: true %>
    </div>
 
    <div class="form-group spacing-search">

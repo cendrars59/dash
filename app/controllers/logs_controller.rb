@@ -13,7 +13,7 @@ class LogsController < ApplicationController
   def index
 
     @search = Log.search(params[:q])
-    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:milestone,:creator, :owner)
+    @logs = @search.result.includes(:log_stage,:log_status,:log_type,:log_added_value,:creator,:owner,:expected_milestone,:confirmed_milestone)
 
     respond_to do |format|
       format.html
@@ -74,7 +74,7 @@ class LogsController < ApplicationController
 
   # Avoid paramters hacking
   def log_params
-    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:milestone_id,:expectation,:creator_id,:owner_id)
+    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:expectation,:creator_id,:owner_id,:expected_milestone_id,:confirmed_milestone_id)
   end
 
 

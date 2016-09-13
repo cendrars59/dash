@@ -11,10 +11,10 @@
       <th>Title</th>
       <th>Type</th>
       <th>Stage</th>
-      <th>Milestone</th>
+      <th>Confirmed milestone</th>
       <th>Value</th>
       <th>Status</th>
-      <th>Owner</th>
+      <th>Created by</th>
     </tr>
     <!-- Table data -->
     <% @logs.each do |log| %>
@@ -37,10 +37,14 @@
       <td><%= log.label %></td>
       <td><%= log.log_type.label %></td>
       <td><%= log.log_stage.label %></td>
-      <td><%= log.milestone.label %></td>
+      <% if log.confirmed_milestone != nil %>
+        <td><%= log.confirmed_milestone.label %> </td>
+      <% else %>
+       <td>Not confirmed</td>
+      <% end %>
       <td><%= log.log_added_value.label %></td>
-      <td><%= log.log_status.label %></td>
-      <td><%= log.owner.alias %></td>
+      <td><%= log.log_status.label %> </td >
+      <td> <%= log.creator.alias %> </td>
     </tr>
 
     <% end %>

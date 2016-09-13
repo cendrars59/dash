@@ -66,6 +66,16 @@ class Log < ApplicationRecord
 
 ####################### validation ##########################################
 
+######## Validation on log type
+
+  # CTRL-LOGS-007 : The log type is mandatory
+  validates :log_type, presence: {presence: true, message: "CTRL-LOGS-007 : The log type is mandatory "}
+
+######## Validation on log status
+
+  # CTRL-LOGS-008 : The log status is mandatory
+  validates :log_status, presence: {presence: true, message: "CTRL-LOGS-008 : The log status is mandatory "}
+
 ######## Validation on log code
 
   # CTRL-LOGS-001 : The code is mandatory
@@ -90,16 +100,17 @@ class Log < ApplicationRecord
   validates :label, length: {maximum: @label_max_length, message: "CTRL-LOGS-006 : The code length can not exceed #{@label_max_length} caracters" }
 
 
+
+
+
+
 ######## Validation on log description
 
   # CTRL-LOGS-007 : The description is mandatory
   validates :description, length: {minimum: @description_min_length, message: "CTRL-LOGS-007 : The description length can not be below #{@description_min_length} caracters" }
 
 
-######## Validation on log type
 
-  # CTRL-LOGS-0xx : The log type is mandatory
-  validates :log_type, presence: {presence: true, message: "CTRL-LOGS-0xx : The log type is mandatory "}
 
 
 
