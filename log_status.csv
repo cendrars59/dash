@@ -1,1 +1,10 @@
-code,label,description,active
+OPE,Open,,true
+ACC,Accepted,,true
+ACK,Acknowledged,,true
+DEV,In dev.,,true
+TTE,To test,,true
+TIP,Testing in progress,,true
+VAL,Validated,,true
+REJ,Rejected,,true
+PEN,Pending,,true
+UND,Undefined,,false

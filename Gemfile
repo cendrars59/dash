@@ -26,6 +26,13 @@ gem 'will_paginate', github: 'jonatack/will_paginate'
 gem 'github-markdown', '~> 0.6.9'
 gem 'gemoji', '~> 2.1'
 
+# Gems in order to install refile used to files upload
+gem 'refile', github: 'refile/refile', require: 'refile/rails'
+gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+
+
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'

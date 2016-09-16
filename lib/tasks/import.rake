@@ -19,11 +19,10 @@ namespace :import do
     reportfilename = "Report on log_types #{Time.now}"
     reportfile = File.new(reportfilename, "w+")
 
-    CSV.foreach(filename, headers: true, headers_converters: :symbol) do |row|
+    CSV.foreach(filename) do |row|
       count += 1
-      logtype = LogType.new row.to_hash.slice(:code,:label,:description)
       code, label, description, active = row
-      log_type = LogType.create(code: code, label: label, description: description)
+      log_type = LogType.create(code: code,label: label,description: description, active: active)
       reportfile.puts "Error row #{count} : #{row}" if log_type.errors.any?
       count_valid += 1 if log_type.persisted?
     end
@@ -47,9 +46,8 @@ namespace :import do
     reportfilename = "Report on log_status #{Time.now}"
     reportfile = File.new(reportfilename, "w+")
 
-    CSV.foreach(filename, headers: true, headers_converters: :symbol) do |row|
+    CSV.foreach(filename) do |row|
       count += 1
-      log_status = LogStatus.new row.to_hash.slice(:code,:label,:description,:active)
       code, label, description, active = row
       log_status = LogStatus.create(code: code, label: label, description: description, active: active)
       reportfile.puts "Error row #{count} : #{row}" if log_status.errors.any?
@@ -74,9 +72,8 @@ namespace :import do
     reportfilename = "Report on log stages #{Time.now}"
     reportfile = File.new(reportfilename, "w+")
 
-    CSV.foreach(filename, headers: true, headers_converters: :symbol) do |row|
+    CSV.foreach(filename) do |row|
       count += 1
-      log_stage = LogStage.new row.to_hash.slice(:code,:label,:description,:active)
       code, label, description, active = row
       log_stage = LogStage.create(code: code, label: label, description: description, active: active)
       reportfile.puts "Error row #{count} : #{row}" if log_stage.errors.any?
@@ -101,9 +98,8 @@ namespace :import do
     reportfilename = "Report on log milestones #{Time.now}"
     reportfile = File.new(reportfilename, "w+")
 
-    CSV.foreach(filename, headers: true, headers_converters: :symbol) do |row|
+    CSV.foreach(filename) do |row|
       count += 1
-      log_milestone = Milestone.new row.to_hash.slice(:code,:label,:description,:active)
       code, label, description, active = row
       log_milestone = Milestone.create(code: code, label: label, description: description, active: active)
       reportfile.puts "Error row #{count} : #{row}" if log_milestone.errors.any?

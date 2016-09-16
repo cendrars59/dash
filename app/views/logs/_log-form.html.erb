@@ -3,25 +3,22 @@
 
 
 <%= simple_form_for @log do |l| %>
-
   <% if @log.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@log.errors.count, "error") %> prohibited this log from being saved:</h3>
+    <div id="error_explanation" class="alert alert-danger">
       <ul>
       <% @log.errors.full_messages.each do |msg| %>
         <li> <%= msg %> </li>
       <% end %>
       </ul>
     </div>
-  <% end %>
+<% end %>
 
 
   <!-- Div managing the log entry -->
   <div class="form-middle-component-area-height">
+
     <!-- Left panel of the middle area -->
     <div class="left-small element-inline component-area-height padding-right " >
-
-      <h3>Caracteristics</h3>
 
       <div>
         <div class="element-inline element-margin-right">
@@ -91,15 +88,10 @@
           <p class="form-control medium-field" id="log-dou" readonly> <%= @log.updated_at %> </p>
         </div>
       </div>
-
-
-
-
     </div>
 
     <!-- Right panel of the middle area -->
     <div class="right-large element-inline component-area-height padding-right">
-      <h3>Description and expectation</h3>
       <div>
         <div class="element-inline element-margin-right">
           <%= l.input :description, label:"Current status",error: false,input_html: {class: 'input-for-resume' }%>
@@ -111,12 +103,11 @@
         </div>
       </div>
     </div>
+
   </div>
 
-
-
   <!-- Buttons area -->
-  <div class="work-area-features-height work-area-features marging-top">
+  <div class="work-area-features-height work-area-features double-marging-top">
     <div class="form-inline">
       <div class="form-group spacing-search">
         <%= l.button :submit, "Validate", class: "btn btn-success button-features" %>

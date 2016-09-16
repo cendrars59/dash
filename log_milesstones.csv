@@ -1,1 +1,6 @@
-code,label,description,active
+NMIR,Next minor release,,true
+NMAR,Next major release,,true
+FUAT,At UAT stage,,true
+FGPR,For go prod,,true
+NCOM,No committement,,true
+UND,Undefined,,true

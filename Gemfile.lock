@@ -19,6 +19,36 @@ GIT
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
 
+GIT
+  remote: git://github.com/refile/refile-mini_magick.git
+  revision: 9c74f7b61c794837a02af3f21d1be96286b7ce4d
+  specs:
+    refile-mini_magick (0.2.0)
+      mini_magick (~> 4.0)
+      refile (~> 0.5)
+
+GIT
+  remote: git://github.com/refile/refile.git
+  revision: d7a42dcd7cf631ba94b01231f535bda061f6af92
+  specs:
+    refile (0.6.2)
+      mime-types
+      rest-client (~> 1.8)
+      sinatra (>= 1.4.5)
+
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: 1b0edc0aeaaf4839cadfcec1b21da86e6af1d4c0
+  branch: master
+  specs:
+    rack-protection (2.0.0.beta2)
+      rack
+    sinatra (2.0.0.beta2)
+      mustermann (= 1.0.0.beta2)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0.beta2)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -59,8 +89,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    arel (7.1.1)
-    autoprefixer-rails (6.4.1)
+    arel (7.1.2)
+    autoprefixer-rails (6.4.1.1)
       execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
@@ -83,6 +113,8 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    domain_name (0.5.20160826)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
@@ -94,6 +126,8 @@ GEM
     github-markdown (0.6.9)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -110,12 +144,13 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
+    mime-types (2.99.3)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    mustermann (1.0.0.beta2)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -179,6 +214,10 @@ GEM
     redis (3.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -205,6 +244,9 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     warden (1.2.6)
       rack (>= 1.0)
     websocket-driver (0.6.4)
@@ -236,8 +278,11 @@ DEPENDENCIES
   rails_12factor
   ransack (~> 1.8, >= 1.8.2)
   redis
+  refile!
+  refile-mini_magick!
   sass-rails
   simple_form!
+  sinatra!
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets (= 3.7.0)

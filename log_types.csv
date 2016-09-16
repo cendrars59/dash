@@ -1,2 +1,4 @@
-code,label,description,active
-
+CR,Change request, ,true
+DF,Defect, ,true
+ID,Idea, ,true
+UN,Undefined, ,true

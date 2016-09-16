@@ -1,1 +1,12 @@
-code,label,description,active
+BDPR,Busi. Process design,,true
+BDRE,Busi. Requirement design,,true
+BUAT,Busi. UAT,,true
+BPVA,Busi. Prod validation,,true
+TATA,Tech. analysys,,true
+TDTA,Tech. architecture design,,true
+TDRQ,Tech. requirement design,,true
+TENS,Tech. environement setting,,true
+TSDV,Tech. solution dev.,,true
+TTES,Tech. solution testing,,true
+IPRO,In production
+
