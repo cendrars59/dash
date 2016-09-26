@@ -8,8 +8,8 @@ class LogsController < ApplicationController
   before_action :find_log_stage, only: [:index,:new,:create,:show,:edit,:update]
   before_action :find_log_type, only: [:index,:new,:create,:show,:edit,:update]
   before_action :find_milestone, only: [:index,:new,:create,:show,:edit,:update]
-
-
+  
+  
   def index
 
     @search = Log.search(params[:q])
@@ -44,10 +44,12 @@ class LogsController < ApplicationController
 
 
   def edit
+    
   end
 
 
   def update
+    #@comments = @log.comments
     @log.owner = current_user
     if @log.update(log_params)
       redirect_to logs_path
@@ -74,7 +76,9 @@ class LogsController < ApplicationController
 
   # Avoid paramters hacking
   def log_params
-    params.require(:log).permit(:code,:label,:description,:log_added_value_id,:log_stage_id,:log_status_id,:log_type_id,:expectation,:creator_id,:owner_id,:expected_milestone_id,:confirmed_milestone_id)
+    params.require(:log).permit(:code,:label,:description,:log_added_value_id,
+      :log_stage_id,:log_status_id,:log_type_id,:expectation,
+      :creator_id,:owner_id,:expected_milestone_id,:confirmed_milestone)
   end
 
 
@@ -118,6 +122,10 @@ class LogsController < ApplicationController
   def is_owner?
     @log.creator.id == current_user.id
   end
+
+  
+
+
 
 
 

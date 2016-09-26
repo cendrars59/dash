@@ -34,6 +34,7 @@ gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 
 
 group :development, :test do
+  gem 'annotate'
   gem 'binding_of_caller'
   gem 'better_errors'
 

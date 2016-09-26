@@ -1,0 +1,4 @@
+<%= simple_form_for([@log,@log.comments.build ]) do |c| %>
+	<%= c.input :comment, label: "Comment",input_html: {class: 'input-for-resume' , rows: 8} %>
+	<%= c.button :submit , class: "btn btn-primary button-features"%>
+<% end %>

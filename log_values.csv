@@ -1,1 +1,8 @@
-code,label,description,active
+PERF,Performance,,true
+USX,User experience,,true
+BRC,Bus. req. comp.,,true
+BMR,Bus. mis. req.,,true
+BPI,Bus. mis. req.,,true
+BMR,Tec. pro. imp.,,true
+TRC,Tec. req. comp.,,true
+UND,Undefined,,false

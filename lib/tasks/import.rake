@@ -112,4 +112,29 @@ namespace :import do
   end
 
 
+  #Req-Import-005: Importing the log added values
+  #Description : Import feature to import from CSV file the log added values as master data
+
+  desc "Import log added values from CSV"
+  task log_values: :environment do
+
+    filename = File.join Rails.root, "log_values.csv"
+    count = 0
+    count_valid = 0
+    reportfilename = "Report on log added values #{Time.now}"
+    reportfile = File.new(reportfilename, "w+")
+
+    CSV.foreach(filename) do |row|
+      count += 1
+      code, label, description, active = row
+      log_value = LogAddedValue.create(code: code, label: label, description: description, active: active)
+      reportfile.puts "Error row #{count} : #{row}" if log_value.errors.any?
+      count_valid += 1 if log_value.persisted?
+    end
+
+    reportfile.puts "Import completed at #{Time.now}"
+    reportfile.puts "Imported #{count_valid} log added values on #{count} line(s)"
+
+  end
+
 end

@@ -24,6 +24,12 @@ class Log < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   belongs_to :owner, class_name: 'User'
 
+  # Destroy is used in order to ensure when the log is deleted then 
+  # the comments related with are also deleted 
+  has_many :comments, dependent: :destroy
+
+  
+
 #############################################################################
 # Log business rules and validation
 #############################################################################
@@ -40,7 +46,7 @@ class Log < ApplicationRecord
   # IE : CR0001
 
 
-  before_validation :set_code
+  before_validation :set_code , if: :log_type?
 
 
   # BR-LOGS-002 : Generating CSV file for log export
@@ -107,7 +113,7 @@ class Log < ApplicationRecord
 ######## Validation on log description
 
   # CTRL-LOGS-007 : The description is mandatory
-  validates :description, length: {minimum: @description_min_length, message: "CTRL-LOGS-007 : The description length can not be below #{@description_min_length} caracters" }
+  validates :description, length: {minimum: @description_min_length, message: "CTRL-LOGS-008 : The description length can not be below #{@description_min_length} caracters" }
 
 
 
@@ -123,7 +129,7 @@ private
       while Log.exists?(code: temp_code)
         temp_code = generate_code
       end
-    self.code = temp_code
+      self.code = temp_code
     end
   end
 
@@ -133,6 +139,9 @@ private
     code = log_type_code + rand(9999).to_s.rjust(4,'0')
   end
 
+  def log_type? 
+    self.log_type != nil 
+  end 
 
 
 

@@ -1,0 +1,45 @@
+<!-- Middle of the work area for the log form page (Creation and Update)-->
+<!-- Displaying the detail view of log-->
+
+
+<%= simple_form_for @log do |l| %>
+  
+  <!--Display of the error list -->
+  <%= render "log_form_errors_list" %>
+  
+  <!-- Div managing the log entry -->
+  <div class="form-middle-component-area-height">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-justified" role="tablist">
+      <li role="presentation" class="active"><a href="#log-home" aria-controls="log-home" role="tab" data-toggle="tab">Description</a></li>
+      <li role="presentation"><a href="#log-comments" aria-controls="log-comments" role="tab" data-toggle="tab">Comments</a></li>
+      <li role="presentation"><a href="#log-attachements" aria-controls="log-attachements" role="tab" data-toggle="tab">Attachements</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab of the log form --> 
+      <%= render partial: "log_form_tab_home",object: @log, :locals => {l: l} %>
+      
+      <!-- Comments tab of the log form -->
+      <%= render partial: "log_form_tab_comments",object: @log, :locals => {l: l} %>
+
+      <!-- Attachements tab of the log form -->
+      <%= render partial: "log_form_tab_attachements",object: @log, :locals => {l: l} %>
+      
+    </div>
+
+  </div>
+
+  <!-- Buttons area -->
+  <%= render partial: "log_form_buttons",object: @log, :locals => {l: l} %>
+  
+<% end %>
+
+
+
+
+
+
+
