@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: log_types
+#
+#  id          :integer          not null, primary key
+#  code        :string
+#  label       :string
+#  description :text
+#  active      :boolean
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class LogType < ApplicationRecord
 
 #############################################################################

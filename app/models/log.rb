@@ -1,4 +1,40 @@
+# == Schema Information
+#
+# Table name: logs
+#
+#  id                     :integer          not null, primary key
+#  code                   :string
+#  label                  :string
+#  description            :text
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  log_stage_id           :integer
+#  log_status_id          :integer
+#  log_type_id            :integer
+#  log_added_value_id     :integer
+#  expectation            :text
+#  creator_id             :integer
+#  owner_id               :integer
+#  expected_milestone_id  :integer
+#  confirmed_milestone_id :integer
+#
+# Indexes
+#
+#  index_logs_on_log_added_value_id  (log_added_value_id)
+#  index_logs_on_log_stage_id        (log_stage_id)
+#  index_logs_on_log_status_id       (log_status_id)
+#  index_logs_on_log_type_id         (log_type_id)
+#
+# Foreign Keys
+#
+#  fk_rails_5d8142ca38  (log_added_value_id => log_added_values.id)
+#  fk_rails_a7b0e10252  (log_stage_id => log_stages.id)
+#  fk_rails_d4bbae0d68  (log_type_id => log_types.id)
+#  fk_rails_e8a3b31969  (log_status_id => log_statuses.id)
+#
+
 class Log < ApplicationRecord
+
 
 
 #############################################################################
@@ -27,6 +63,7 @@ class Log < ApplicationRecord
   # Destroy is used in order to ensure when the log is deleted then 
   # the comments related with are also deleted 
   has_many :comments, dependent: :destroy
+  has_many :log_screens, dependent: :destroy
 
   
 
@@ -112,13 +149,15 @@ class Log < ApplicationRecord
 
 ######## Validation on log description
 
-  # CTRL-LOGS-007 : The description is mandatory
+  # CTRL-LOGS-009 : The description is mandatory
   validates :description, length: {minimum: @description_min_length, message: "CTRL-LOGS-008 : The description length can not be below #{@description_min_length} caracters" }
 
 
+######## After saving log 
 
+  # CTRL-LOGS-010 : The description is mandatory
 
-
+  after_save :send_mail_to_creator
 
 private
 
@@ -141,6 +180,13 @@ private
 
   def log_type? 
     self.log_type != nil 
+  end 
+
+
+  def send_mail_to_creator
+
+    UserMailer.log_notification_email(self.creator).deliver_now
+
   end 
 
 

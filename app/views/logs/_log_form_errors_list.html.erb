@@ -1,10 +1,10 @@
 <% if @log.errors.any? %>
-    <div class="alert alert-warning alert-dismissible" role="alert">
-    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    	<ul class="no-bullet-point">
-    		<% @log.errors.full_messages.each do |msg| %>
-        		<li class="align-left"> <%= msg %> </li>
-      		<% end %>
-    	</ul>
-    </div>
+	<div class="alert alert-warning alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<ul class="no-bullet-point">
+			<% @log.errors.full_messages.each do |msg| %>
+	    		<li class="align-left"> <%= msg %> </li>
+	  		<% end %>
+		</ul>
+	</div>
 <% end %>

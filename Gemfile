@@ -18,7 +18,7 @@ gem 'font-awesome-sass'
 gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'autoprefixer-rails'
 gem 'sprockets', '3.7.0'
-# to manag the seach form in index pages
+# to manage the seach form in index pages
 gem 'ransack', '~> 1.8', '>= 1.8.2'
 gem 'will_paginate', github: 'jonatack/will_paginate'
 
@@ -27,9 +27,14 @@ gem 'github-markdown', '~> 0.6.9'
 gem 'gemoji', '~> 2.1'
 
 # Gems in order to install refile used to files upload
-gem 'refile', github: 'refile/refile', require: 'refile/rails'
+gem 'refile', github: 'refile/refile', require: ['refile/rails','refile/simple_form' ]
+gem 'refile-s3'
+gem 'refile-postgres', '~> 1.4'
 gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
 gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+
+#gem for files uploading 
+gem "shrine"
 
 
 
@@ -38,7 +43,6 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
 
-  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
   gem 'listen', '~> 3.0.5'

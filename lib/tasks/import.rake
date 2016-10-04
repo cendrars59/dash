@@ -13,12 +13,13 @@ namespace :import do
 
     # File.join Returns a new string formed by joining the strings using File::SEPARATOR.
     # File.join("usr", "mail", "gumby")   #=> "usr/mail/gumby"
-    filename = File.join Rails.root, "log_types.csv"
+    Dir.chdir "lib/tasks/import_log/"
+    reportfilename = "Report on log_types_import #{Time.now}"
+    reportfile = File.new(reportfilename, "w+")
+    Dir.chdir "../"
+    filename = "master_data/log_types.csv"
     count = 0
     count_valid = 0
-    reportfilename = "Report on log_types #{Time.now}"
-    reportfile = File.new(reportfilename, "w+")
-
     CSV.foreach(filename) do |row|
       count += 1
       code, label, description, active = row
@@ -40,7 +41,11 @@ namespace :import do
   desc "Import log status from CSV"
   task log_status: :environment do
 
-    filename = File.join Rails.root, "log_status.csv"
+    Dir.chdir "lib/tasks/import_log/"
+    reportfilename = "Report on log_status_import #{Time.now}"
+    reportfile = File.new(reportfilename, "w+")
+    Dir.chdir "../"
+    filename = "master_data/log_status.csv"
     count = 0
     count_valid = 0
     reportfilename = "Report on log_status #{Time.now}"
@@ -66,7 +71,11 @@ namespace :import do
   desc "Import log stages from CSV"
   task log_stages: :environment do
 
-    filename = File.join Rails.root, "log_stages.csv"
+    Dir.chdir "lib/tasks/import_log/"
+    reportfilename = "Report on log_stages_import #{Time.now}"
+    reportfile = File.new(reportfilename, "w+")
+    Dir.chdir "../"
+    filename = "master_data/log_stages.csv"
     count = 0
     count_valid = 0
     reportfilename = "Report on log stages #{Time.now}"
@@ -92,7 +101,11 @@ namespace :import do
   desc "Import log milestones from CSV"
   task log_milestones: :environment do
 
-    filename = File.join Rails.root, "log_milesstones.csv"
+    Dir.chdir "lib/tasks/import_log/"
+    reportfilename = "Report on log_milestones_import #{Time.now}"
+    reportfile = File.new(reportfilename, "w+")
+    Dir.chdir "../"
+    filename = "master_data/log_milesstones.csv"
     count = 0
     count_valid = 0
     reportfilename = "Report on log milestones #{Time.now}"
@@ -118,7 +131,11 @@ namespace :import do
   desc "Import log added values from CSV"
   task log_values: :environment do
 
-    filename = File.join Rails.root, "log_values.csv"
+    Dir.chdir "lib/tasks/import_log/"
+    reportfilename = "Report on log_values_import #{Time.now}"
+    reportfile = File.new(reportfilename, "w+")
+    Dir.chdir "../"
+    filename = "master_data/log_values.csv"
     count = 0
     count_valid = 0
     reportfilename = "Report on log added values #{Time.now}"
