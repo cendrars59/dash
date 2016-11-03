@@ -63,6 +63,7 @@ class LogsController < ApplicationController
 
   def destroy
     if is_owner?
+      binding.pry
       @log.destroy
       redirect_to logs_path
     else
@@ -70,15 +71,13 @@ class LogsController < ApplicationController
     end
   end
 
-
-
   private
 
   # Avoid paramters hacking
   def log_params
     params.require(:log).permit(:code,:label,:description,:log_added_value_id,
       :log_stage_id,:log_status_id,:log_type_id,:expectation,
-      :creator_id,:owner_id,:expected_milestone_id,:confirmed_milestone)
+      :creator_id,:owner_id,:expected_milestone_id,:confirmed_milestone_id)
   end
 
 
@@ -122,12 +121,6 @@ class LogsController < ApplicationController
   def is_owner?
     @log.creator.id == current_user.id
   end
-
-  
-
-
-
-
 
 
 end

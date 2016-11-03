@@ -63,7 +63,6 @@ class Log < ApplicationRecord
   # Destroy is used in order to ensure when the log is deleted then 
   # the comments related with are also deleted 
   has_many :comments, dependent: :destroy
-  has_many :log_screens, dependent: :destroy
 
   
 
