@@ -18,7 +18,7 @@
     </tr>
     <!-- Table data -->
     <% @logs.each do |log| %>
-    <tr>
+    <tr id='<%=log.id%>'>
       <td>
         <ul class="list-inline product-controls hidden-sm hidden-xs">
           <li>
@@ -27,7 +27,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to log_path(log), method: :delete do %>
+            <%= link_to log_path(log), method: :delete,data: {confirm: "Do you really want to delete this log ?"} ,remote: true do %>
               <i class="fa fa-trash"> </i>
             <% end %>
           </li>

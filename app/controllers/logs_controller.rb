@@ -18,6 +18,7 @@ class LogsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {send_data @logs.to_csv, filename: "Logs Selection-#{Date.today}.csv"}
+      format.js
     end
 
   end
@@ -29,6 +30,10 @@ class LogsController < ApplicationController
 
   def new
     @log = Log.new
+    #respond_to do |format|
+        #format.html
+        #format.js
+    #end
   end
 
 
@@ -63,9 +68,11 @@ class LogsController < ApplicationController
 
   def destroy
     if is_owner?
-      binding.pry
       @log.destroy
-      redirect_to logs_path
+      respond_to do |format|
+        format.html {redirect_to logs_path}
+        format.js
+      end
     else
       redirect_to logs_path, flash: { alert: "CTRL-LOGS-0xx: You are not the owner of the current log it can not be deleted by you" }
     end

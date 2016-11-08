@@ -31,15 +31,16 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
+
       <!-- Home tab of the log form --> 
-      <%= render partial: "log_form_tab_home",object: @log, :locals => {l: l} %>
-      
+      <%= render partial: "log_form_tab_home",object: @log,:locals => {l: l} %>
+
       <!-- Comments tab of the log form -->
       <%= render partial: "log_form_tab_comments",object: @log, :locals => {l: l} %>
-
+    
       <!-- Attachements tab of the log form -->
       <%= render partial: "log_form_tab_attachements",object: @log, :locals => {l: l} %>
-      
+   
     </div>
 
   </div>
